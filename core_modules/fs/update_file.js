@@ -24,6 +24,12 @@ const server = http.createServer((request, response)=>{
     }else{
         const value = name + '\r\n';
 
+        const exist = fs.existsSync('file.txt');
+
+        if(!exist){
+            console.log('Creating file');
+        }
+
         fs.appendFile('file.txt', value, function (err, data){
             response.writeHead(302, {
                 Location:'/',
